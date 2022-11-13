@@ -42,6 +42,10 @@ public static class ApplicationDbInitializer
         
         db.Restaurants.AddRange(restaurants);
         
+        // Add relationship between users and restaurants
+        admin.Restaurant = restaurants[0];
+        user.Restaurant = restaurants[1];
+        
         // Add example Tables
         var tables = new[]
         {
