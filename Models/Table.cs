@@ -14,7 +14,8 @@ public class Table
     [Required]
     public int TableId { get; set; }
 
-    [Required] public int Seats { get; set; } = 1;
+    [Required]
+    public int Seats { get; set; } = 1;
     
     
     // Foreign keys

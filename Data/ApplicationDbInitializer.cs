@@ -78,6 +78,19 @@ public static class ApplicationDbInitializer
         reservations[0].User = user;
         reservations[1].User = user;
         reservations[2].User = admin;
+        
+        // Add example dishes
+        var dishes = new[]
+        {
+            new Dish("Dish name 1", 100, restaurants[0]),
+            new Dish("Dish name 2", 150, restaurants[0]),
+            new Dish("Dish name 3", 150, restaurants[1]),
+            new Dish("Dish name 4", 200, restaurants[1]),
+            new Dish("Dish name 5", 200, restaurants[2]),
+            new Dish("Dish name 6", 250, restaurants[2])
+        };
+        
+        db.Dishes.AddRange(dishes);
 
         // Save changes made to database
         db.SaveChanges();

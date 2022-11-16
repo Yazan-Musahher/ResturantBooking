@@ -14,4 +14,5 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Restaurant> Restaurants => Set<Restaurant>();
     public DbSet<Table> Tables => Set<Table>();
     public DbSet<Reservation> Reservations => Set<Reservation>();
+    public DbSet<Dish> Dishes => Set<Dish>();
 }
