@@ -1,0 +1,28 @@
+﻿@model Restaurant
+@{
+    ViewBag.Title = "Restaurant";
+    Layout = "_Layout";
+}
+
+<h2>Edit restaurant</h2>
+
+<h3>Add user to restaurant</h3>
+<form method="post">
+    <input type="email" id="email" name="email" placeholder="User email"/>
+    <input type="submit"/>
+</form>
+
+@if (Model != null)
+{
+    /*
+    <h3>Edit restaurant details</h3>
+    <form method="post" asp-page-handler="UpdateRestaurant">
+         <input type="hidden" id="id" name="id" value="@Model.RestaurantId"/>
+        <input type="text" id="Name" name="Name" placeholder="Restaurant name" value="@Model.Name"/>
+        <input type="text" id="Address" name="Address" placeholder="Address" value="@Model.Address"/>
+        <input type="text" id="Email" name="Email" placeholder="Restaurant email" value="@Model.Email"/>
+        <input type="text" id="PhoneNumber" name="PhoneNumber" placeholder="Phone number" value="@Model.PhoneNumber"/>
+        <input type="submit"/>
+    </form>   
+    */
+}

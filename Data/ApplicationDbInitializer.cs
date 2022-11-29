@@ -26,11 +26,15 @@ public static class ApplicationDbInitializer
         
         var user = new ApplicationUser()
             { UserName = "user@uia.no", Email = "user@uia.no", Name = "User", EmailConfirmed = true };
+        
+        var user2 = new ApplicationUser()
+            { UserName = "user2@uia.no", Email = "user2@uia.no", Name = "User2", EmailConfirmed = true };
 
         um.CreateAsync(admin, "Password1.").Wait();
         um.AddToRoleAsync(admin, "Admin").Wait();
         
         um.CreateAsync(user, "Password1.").Wait();
+        um.CreateAsync(user2, "Password1.").Wait();
         
         // Add example restaurant
         var restaurants = new[]
