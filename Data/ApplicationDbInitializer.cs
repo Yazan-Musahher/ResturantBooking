@@ -64,9 +64,10 @@ public static class ApplicationDbInitializer
         // Add example reservations
         var reservations = new[]
         {
-            new Reservation(DateTime.Now),
-            new Reservation(DateTime.Now),
-            new Reservation(DateTime.Now)
+            new Reservation(DateTime.Now.AddHours(1)),
+            new Reservation(DateTime.Now.AddHours(2)),
+            new Reservation(DateTime.Now.AddHours(3)),
+            new Reservation(DateTime.Now.AddHours(4))
         };
         
         db.Reservations.AddRange(reservations);
@@ -74,20 +75,22 @@ public static class ApplicationDbInitializer
         reservations[0].Table = tables[0];
         reservations[1].Table = tables[1];
         reservations[2].Table = tables[2];
+        reservations[3].Table = tables[0];
         
         reservations[0].User = user;
         reservations[1].User = user;
         reservations[2].User = admin;
+        reservations[3].User = admin;
         
         // Add example dishes
         var dishes = new[]
-        {
-            new Dish("Dish name 1", 100, restaurants[0]),
-            new Dish("Dish name 2", 150, restaurants[0]),
-            new Dish("Dish name 3", 150, restaurants[1]),
-            new Dish("Dish name 4", 200, restaurants[1]),
-            new Dish("Dish name 5", 200, restaurants[2]),
-            new Dish("Dish name 6", 250, restaurants[2])
+        {                               // Price in øre
+            new Dish("Dish name 1", 10000, restaurants[0]),
+            new Dish("Dish name 2", 15000, restaurants[0]),
+            new Dish("Dish name 3", 15000, restaurants[1]),
+            new Dish("Dish name 4", 20000, restaurants[1]),
+            new Dish("Dish name 5", 20000, restaurants[2]),
+            new Dish("Dish name 6", 25000, restaurants[2])
         };
         
         db.Dishes.AddRange(dishes);

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Reservation>
+@{
+    ViewBag.Title = "Restaurant";
+    Layout = "_Layout";
+}
+
+<h2>Restaurant</h2>
+
+<h3>Reservations</h3>
+@foreach (var reservation in Model)
+{
+    // Example
+    <div style="background-color: gray">
+        Reservation id @reservation.ReservationId,<br/>
+        Table @reservation.TableId,<br/>
+        Name @reservation.User?.Name,<br/>
+        Time @reservation.Time.ToString(" HH:mm dd.MM.yyyy")
+    </div>
+    <br/>
+}

@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Restaurant>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +7,15 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+    @foreach (var restaurant in Model)
+    {
+        // Example
+        <div style="background-color: gray">
+            <h3>@restaurant.Name</h3>
+            @restaurant.Address<br/>
+            @restaurant.Email<br/>
+            @restaurant.PhoneNumber<br/>
+            <a asp-area="" asp-controller="Booking" asp-action="Index" asp-route-id="@restaurant.RestaurantId">Book</a>
+        </div><br/>
+    }
