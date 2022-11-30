@@ -26,5 +26,11 @@
         <li class="nav-item">
             <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
         </li>
+        
+        <!-- Only a dummy to get to the Registration view. 
+        Needs to make a check to si if the restaurant owner is logged in -->
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="RestaurantRegistration" asp-action="Index">Register restaurant</a>
+        </li>
     }
 </ul>

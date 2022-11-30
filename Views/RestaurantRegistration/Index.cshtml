@@ -1,0 +1,42 @@
+﻿@model Restaurant
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h1 class="align-content-center">Register your restaurant</h1>
+
+<form method="post">
+    <div class="col-4 align-content-center">
+        <label asp-for="Name"></label>
+    </div>
+    <div class="col-4 align-content-center">
+        <textarea asp-for="Name" rows="1" cols="50" placeholder="Enter name" id="Name"></textarea>
+        <span asp-validation-for="Name"></span>
+    </div>
+        <div class="col-4 align-content-center">
+            <label asp-for="Address"></label>
+        </div>
+    <div class="col-4 align-content-center">
+        <textarea asp-for="Address" rows="1" cols="50" placeholder="Enter address" id="Address"></textarea>
+        <span asp-validation-for="Address"></span>
+    </div>
+        <div class="col-4 align-content-center">
+                <label asp-for="Email"></label>
+            </div>
+    <div class="col-4 align-content-center">
+        <textarea asp-for="Email" rows="1" cols="50" placeholder="Enter email" id="Email"></textarea>
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div class="col-4 align-content-center">
+                <label asp-for="PhoneNumber"></label>
+            </div>
+    <div class="col-4 align-content-center">
+        <textarea asp-for="PhoneNumber" rows="1" cols="50" placeholder="Enter phone number" id="PhoneNumber"></textarea>
+        <span asp-validation-for="PhoneNumber"></span>
+    </div>
+    <div class="col-4 align-content-center">
+        <input type="button" value="Submit"/>
+    </div>
+</form>

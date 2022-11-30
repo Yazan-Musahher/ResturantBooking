@@ -1,8 +1,15 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<Restaurant>
+
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@foreach (var restaurant in Model)
+{
+    <p>@restaurant.Name</p>
+    <p>@restaurant.Address</p>
+    <p>@restaurant.Email</p>
+    <p>@restaurant.PhoneNumber</p>
+}
