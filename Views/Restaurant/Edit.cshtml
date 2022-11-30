@@ -1,16 +1,24 @@
-﻿@model Restaurant
+﻿@model dynamic
 @{
     ViewBag.Title = "Restaurant";
     Layout = "_Layout";
 }
 
-<h2>Edit restaurant</h2>
+<h2>Edit @Model.Restaurant.Name</h2>
 
 <h3>Add user to restaurant</h3>
 <form method="post">
     <input type="email" id="email" name="email" placeholder="User email"/>
     <input type="submit"/>
 </form>
+
+<div>
+    <h4>Users</h4>
+    @foreach (var user in Model.Users)
+    {
+        <i>@user.Name, @user.Email</i><br/>
+    }
+</div>
 
 @if (Model != null)
 {

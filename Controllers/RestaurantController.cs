@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Dynamic;
+using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -42,8 +43,7 @@ public class RestaurantController : Controller
             return RedirectToRoute("default", 
                 new { controller = "Restaurant", action = "Index", id = applicationUser.RestaurantId.ToString() });
         }
-        
-        
+
         // Get all reservations to restaurant
         var reservations = _db.Reservations
             .Include(i => i.Table.Restaurant)
@@ -51,7 +51,11 @@ public class RestaurantController : Controller
             .Where(i => i.Table.RestaurantId == restaurantId)
             .OrderBy(i => i.Time);
         
-        return View(reservations);
+        dynamic myModel = new ExpandoObject();
+        myModel.Reservations = reservations;
+        myModel.Restaurant = _db.Restaurants.Find(restaurantId);
+        
+        return View(myModel);
     }
     
     [HttpGet]
@@ -68,7 +72,7 @@ public class RestaurantController : Controller
         
         // Check that user has access to restaurant
         var applicationUser = _um.GetUserAsync(User).Result;
-        if (restaurantId != applicationUser.RestaurantId && !User.IsInRole("Admin"))
+        if ((restaurantId != applicationUser.RestaurantId && !User.IsInRole("Admin")) || restaurantId == 0)
         {
             return RedirectToRoute("default", 
                 new { controller = "Restaurant", action = "Edit", id = applicationUser.RestaurantId.ToString() });
@@ -77,7 +81,11 @@ public class RestaurantController : Controller
         // Get all reservations to restaurant
         var restaurant = _db.Restaurants.Find(restaurantId);
         
-        return View(restaurant);
+        dynamic myModel = new ExpandoObject();
+        myModel.Restaurant = restaurant;
+        myModel.Users = _db.Users.Where(i => i.RestaurantId == restaurantId);
+        
+        return View(myModel);
     }
 
     [HttpPost]
@@ -90,15 +98,15 @@ public class RestaurantController : Controller
         // Check if user exists
         if (user == null)
         {
-            Console.WriteLine("User does not exist");
-            return View();
+            //"User does not exist"
+            return RedirectToAction("Edit");
         }
 
         // Check if user has a restaurant
-        if (user.Restaurant != null)
+        if (user.RestaurantId != null)
         {
-            Console.WriteLine("User already has a restaurant");
-            return View();
+            //"User already has a restaurant"
+            return RedirectToAction("Edit");
         }
         
         // Get restaurant id
@@ -115,7 +123,7 @@ public class RestaurantController : Controller
         user.Restaurant = restaurant;
         _db.SaveChanges();
 
-        return View(restaurant);
+        return RedirectToAction("Edit");
         
     }
 

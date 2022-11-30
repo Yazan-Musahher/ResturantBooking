@@ -1,9 +1,32 @@
-﻿@{
+﻿@model dynamic
+@{
     ViewData["Title"] = "Booking Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Velkommen til booking</h1>
+    <h1 class="display-4">@Model.Restaurant.Name</h1>
 </div>
 
-Add a form to reserve a table here
+
+<h3>Reserve table</h3>
+<form method="post">
+    <input type="datetime-local" id="time" name="time"/>
+    <div>
+        @foreach (var table in Model.Tables)
+        {
+            // Check if table is occupied at this time, if so don't show it
+            
+            <label>Table @table.TableId, @table.Seats seats</label>
+            <input type="radio" value=@table.TableId name="tableId"/>
+            <br/>
+        }
+    </div>
+    <input type="submit"/>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+        alert('@ViewBag.Message');
+    </script>
+}

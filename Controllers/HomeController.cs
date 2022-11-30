@@ -20,7 +20,6 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        //_db.Restaurants;
         return View(_db.Restaurants);
     }
 

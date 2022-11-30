@@ -55,7 +55,10 @@ public static class ApplicationDbInitializer
         {
             new Table(4),
             new Table(4),
-            new Table(5)
+            new Table(5),
+            new Table(2),
+            new Table(3),
+            new Table(5),
         };
         
         db.Tables.AddRange(tables);
@@ -64,6 +67,9 @@ public static class ApplicationDbInitializer
         tables[0].Restaurant = restaurants[0];
         tables[1].Restaurant = restaurants[1];
         tables[2].Restaurant = restaurants[2];
+        tables[3].Restaurant = restaurants[0];
+        tables[4].Restaurant = restaurants[1];
+        tables[5].Restaurant = restaurants[2];
 
         // Add example reservations
         var reservations = new[]
