@@ -18,19 +18,22 @@
     {
         <i>@user.Name, @user.Email</i><br/>
     }
+    <form method="post" asp-action="LeaveRestaurant">
+        <input type="submit" value="Leave restaurant"/>
+    </form>
 </div>
 
 @if (Model != null)
 {
-    /*
+    
     <h3>Edit restaurant details</h3>
-    <form method="post" asp-page-handler="UpdateRestaurant">
-         <input type="hidden" id="id" name="id" value="@Model.RestaurantId"/>
-        <input type="text" id="Name" name="Name" placeholder="Restaurant name" value="@Model.Name"/>
-        <input type="text" id="Address" name="Address" placeholder="Address" value="@Model.Address"/>
-        <input type="text" id="Email" name="Email" placeholder="Restaurant email" value="@Model.Email"/>
-        <input type="text" id="PhoneNumber" name="PhoneNumber" placeholder="Phone number" value="@Model.PhoneNumber"/>
+    <form method="post" asp-action="UpdateRestaurant">
+        <input type="hidden" id="id" name="id" value="@Model.Restaurant.RestaurantId"/>
+        <input type="text" id="Name" name="Name" placeholder="Restaurant name" value="@Model.Restaurant.Name"/>
+        <input type="text" id="Address" name="Address" placeholder="Address" value="@Model.Restaurant.Address"/>
+        <input type="text" id="Email" name="Email" placeholder="Restaurant email" value="@Model.Restaurant.Email"/>
+        <input type="text" id="PhoneNumber" name="PhoneNumber" placeholder="Phone number" value="@Model.Restaurant.PhoneNumber"/>
         <input type="submit"/>
     </form>   
-    */
+    
 }

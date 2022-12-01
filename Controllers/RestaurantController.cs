@@ -126,8 +126,18 @@ public class RestaurantController : Controller
         return RedirectToAction("Edit");
         
     }
+    
+    [HttpPost]
+    [Authorize]
+    public IActionResult LeaveRestaurant()
+    {
+        var applicationUser = _um.GetUserAsync(User).Result;
+        applicationUser.RestaurantId = null;
+        _db.SaveChanges();
 
-    /*
+        return RedirectToAction("Index", "Home");
+    }
+
     [HttpPost]
     [Authorize]
     public IActionResult UpdateRestaurant(int id, Restaurant newRestaurant)
@@ -145,6 +155,6 @@ public class RestaurantController : Controller
         return RedirectToAction("Edit", restaurant);
         
     }
-    */
     
+
 }
