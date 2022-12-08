@@ -1,0 +1,17 @@
+﻿@model dynamic
+@{
+    ViewData["Title"] = "Booking Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@Model.Restaurant.Name</h1>
+</div>
+
+
+<h3>Reserve table</h3>
+<form method="post">
+    <input type="datetime-local" id="time" name="time"/>
+    <input type="number" id="seats" name="seats" placeholder="Seats"/>
+    <input type="hidden" id="restaurantId" name="restaurantId" value="@Model.Restaurant.RestaurantId"/>
+    <input type="submit"/>
+</form>

@@ -26,11 +26,15 @@ public static class ApplicationDbInitializer
         
         var user = new ApplicationUser()
             { UserName = "user@uia.no", Email = "user@uia.no", Name = "User", EmailConfirmed = true };
+        
+        var user2 = new ApplicationUser()
+            { UserName = "user2@uia.no", Email = "user2@uia.no", Name = "User2", EmailConfirmed = true };
 
         um.CreateAsync(admin, "Password1.").Wait();
         um.AddToRoleAsync(admin, "Admin").Wait();
         
         um.CreateAsync(user, "Password1.").Wait();
+        um.CreateAsync(user2, "Password1.").Wait();
         
         // Add example restaurant
         var restaurants = new[]
@@ -51,7 +55,10 @@ public static class ApplicationDbInitializer
         {
             new Table(4),
             new Table(4),
-            new Table(5)
+            new Table(5),
+            new Table(2),
+            new Table(3),
+            new Table(5),
         };
         
         db.Tables.AddRange(tables);
@@ -60,13 +67,17 @@ public static class ApplicationDbInitializer
         tables[0].Restaurant = restaurants[0];
         tables[1].Restaurant = restaurants[1];
         tables[2].Restaurant = restaurants[2];
+        tables[3].Restaurant = restaurants[0];
+        tables[4].Restaurant = restaurants[1];
+        tables[5].Restaurant = restaurants[2];
 
         // Add example reservations
         var reservations = new[]
         {
-            new Reservation(DateTime.Now),
-            new Reservation(DateTime.Now),
-            new Reservation(DateTime.Now)
+            new Reservation(DateTime.Now.AddHours(1)),
+            new Reservation(DateTime.Now.AddHours(2)),
+            new Reservation(DateTime.Now.AddHours(3)),
+            new Reservation(DateTime.Now.AddHours(4))
         };
         
         db.Reservations.AddRange(reservations);
@@ -74,20 +85,22 @@ public static class ApplicationDbInitializer
         reservations[0].Table = tables[0];
         reservations[1].Table = tables[1];
         reservations[2].Table = tables[2];
+        reservations[3].Table = tables[0];
         
         reservations[0].User = user;
         reservations[1].User = user;
         reservations[2].User = admin;
+        reservations[3].User = admin;
         
         // Add example dishes
         var dishes = new[]
-        {
-            new Dish("Dish name 1", 100, restaurants[0]),
-            new Dish("Dish name 2", 150, restaurants[0]),
-            new Dish("Dish name 3", 150, restaurants[1]),
-            new Dish("Dish name 4", 200, restaurants[1]),
-            new Dish("Dish name 5", 200, restaurants[2]),
-            new Dish("Dish name 6", 250, restaurants[2])
+        {                               // Price in øre
+            new Dish("Dish name 1", 10000, restaurants[0]),
+            new Dish("Dish name 2", 15000, restaurants[0]),
+            new Dish("Dish name 3", 15000, restaurants[1]),
+            new Dish("Dish name 4", 20000, restaurants[1]),
+            new Dish("Dish name 5", 20000, restaurants[2]),
+            new Dish("Dish name 6", 25000, restaurants[2])
         };
         
         db.Dishes.AddRange(dishes);

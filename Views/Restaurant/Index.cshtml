@@ -1,0 +1,25 @@
+﻿@model dynamic
+@{
+    ViewBag.Title = "Restaurant";
+    Layout = "_Layout";
+}
+
+<h2>@Model.Restaurant.Name</h2>
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Restaurant" asp-action="Edit">Edit restaurant</a>
+
+<h3>Reservations</h3>
+@foreach (var reservation in Model.Reservations)
+{
+    if (reservation.Time.AddHours(1) > DateTime.Now)
+    {
+        // Example
+        <div style="background-color: gray">
+            Reservation id @reservation.ReservationId,<br/>
+            Table @reservation.TableId,<br/>
+            Name @reservation.User?.Name,<br/>
+            Time @reservation.Time.ToString(" HH:mm dd.MM.yyyy")
+        </div>
+        <br/>
+    }
+}
