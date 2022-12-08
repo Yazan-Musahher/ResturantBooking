@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Resturant_Booking.Data;
 using Resturant_Booking.Models;
 
@@ -17,7 +18,9 @@ public class BookingController : Controller
         _db = db;
         _um = um;
     }
-    public IActionResult Index()
+    
+    [Authorize]
+    public IActionResult Index(string message = "")
     {
         // Get restaurant id
         var restaurantIdString = Url.ActionContext.RouteData.Values["id"]?.ToString();
@@ -38,25 +41,45 @@ public class BookingController : Controller
         myModel.Restaurant = restaurant;
         myModel.Tables = tables;
         myModel.Reservations = reservations;
+        //myModel.Message = message;
         
         return View(myModel);
     }
 
     [Authorize]
     [HttpPost]
-    public IActionResult Index(Reservation reservation)
+    public IActionResult Index(Reservation reservation, int seats, int restaurantId)
     {
-        // Check that reservation does not overlap
-        var overlap = _db.Reservations
-            .Where(i => i.Table == reservation.Table)
-            .Where(i => i.Time >= reservation.Time)
-            .Where(i => i.Time < reservation.Time.AddHours(1)).FirstOrDefault();
-
-        if (overlap != null)
+        // Find tables
+        var tables = _db.Tables
+            .Where(i => i.RestaurantId == restaurantId) // Only tables at selected restaurant
+            .Where(i => i.Seats >= seats)               // Only tables with enough seats
+            .OrderBy(i => i.Seats);                     // Ordered from closest to least close in seats
+        
+        // Find first available 
+        foreach (var table in tables)
         {
-            ViewBag.Message = "Table is already reserved at that time";  
-            return RedirectToAction("Index");
+            // Check if table is available
+            var reservations = _db.Reservations
+                .Where(i => i.TableId == table.TableId)
+                .Where(i => i.Time >= reservation.Time || i.Time <= reservation.Time.AddHours(1));
+
+            // If an available table is found
+            if (!reservations.Any())
+            {
+                reservation.Table = table;
+                break;
+            }
         }
+
+        // If no table was found
+        if (reservation.Table == null)
+        {
+            //ViewBag.Message = "No available tables";
+            ViewData["Message"] = "No available tables";
+            return RedirectToAction("Index", new { message = "No available tables" });
+        }
+        
         
         // Add user to reservation
         reservation.User = _um.GetUserAsync(User).Result;
@@ -66,7 +89,8 @@ public class BookingController : Controller
         _db.SaveChanges();
         
         // Return to view of user reservations if we make that
-        ViewBag.Message = "Table reserved";
-        return RedirectToAction("Index");
+        //ViewBag.Message = "Table reserved";
+        ViewData["Message"] = "Table reserved";
+        return RedirectToAction("Index", new { message = "Table reserved" });
     }
 }

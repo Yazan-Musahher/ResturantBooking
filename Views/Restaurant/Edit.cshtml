@@ -25,7 +25,6 @@
 
 @if (Model != null)
 {
-    
     <h3>Edit restaurant details</h3>
     <form method="post" asp-action="UpdateRestaurant">
         <input type="hidden" id="id" name="id" value="@Model.Restaurant.RestaurantId"/>
@@ -34,6 +33,27 @@
         <input type="text" id="Email" name="Email" placeholder="Restaurant email" value="@Model.Restaurant.Email"/>
         <input type="text" id="PhoneNumber" name="PhoneNumber" placeholder="Phone number" value="@Model.Restaurant.PhoneNumber"/>
         <input type="submit"/>
-    </form>   
+    </form>
     
+    <h3>Edit tables</h3>
+
+
+    <form method="post" asp-action="UpdateTables">
+        <input type="hidden" id="id" name="id" value="@Model.Restaurant.RestaurantId"/>
+        <table>
+            <tr><td>Seats</td><td>Number of tables</td></tr>
+            @for (int i = 1; i < 12 + 1; i++)
+            {
+                <tr>
+                    <td>@i </td>
+                    <td><input type="number" id="s_@i" name="s_@i" value="@Model.Tables[i - 1]"/></td>
+                </tr>
+            }
+
+        </table>
+        <input type="submit"/>
+    </form>
+
 }
+
+

@@ -11,22 +11,7 @@
 <h3>Reserve table</h3>
 <form method="post">
     <input type="datetime-local" id="time" name="time"/>
-    <div>
-        @foreach (var table in Model.Tables)
-        {
-            // Check if table is occupied at this time, if so don't show it
-            
-            <label>Table @table.TableId, @table.Seats seats</label>
-            <input type="radio" value=@table.TableId name="tableId"/>
-            <br/>
-        }
-    </div>
+    <input type="number" id="seats" name="seats" placeholder="Seats"/>
+    <input type="hidden" id="restaurantId" name="restaurantId" value="@Model.Restaurant.RestaurantId"/>
     <input type="submit"/>
 </form>
-
-@if (ViewBag.Message != null)
-{
-    <script>
-        alert('@ViewBag.Message');
-    </script>
-}
