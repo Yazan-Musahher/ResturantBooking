@@ -13,5 +13,56 @@
     <input type="datetime-local" id="time" name="time"/>
     <input type="number" id="seats" name="seats" placeholder="Seats"/>
     <input type="hidden" id="restaurantId" name="restaurantId" value="@Model.Restaurant.RestaurantId"/>
-    <input type="submit"/>
+    <input type="submit" id="submitButton" style="display: none"/>
+    
+    <div id="smart-button-container">
+      <div style="text-align: center;">
+        <div id="paypal-button-container"></div>
+      </div>
+    </div>
+    
 </form>
+
+<!-- AZKwx3XFU9M4uxecdaTMjNL1LFQW54P1-XygoS4f2pJbVbi8Regv0lZYig84Xih_IcvYtSnWZhFmt1Wa -->
+<!-- EEDOHLMMjvOXgk0ZRn3k7bc-_d9yaS-pnYvyLZsKWDF0bFX4Ktdi4tj2YWzRYp4Ch0IL7HB6fRioGOAt -->
+
+  <script src="https://www.paypal.com/sdk/js?client-id=AZKwx3XFU9M4uxecdaTMjNL1LFQW54P1-XygoS4f2pJbVbi8Regv0lZYig84Xih_IcvYtSnWZhFmt1Wa&enable-funding=venmo&currency=NOK" data-sdk-integration-source="button-factory"></script>
+  <script>
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+        },
+
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"amount":{"currency_code":"NOK","value":1}}]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+            
+            // Full available details
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+            // Show a success message within this page, e.g.
+            const element = document.getElementById('paypal-button-container');
+            element.innerHTML = '<h3>Thank you for your payment!</h3>';
+
+            // Or go to another URL:  actions.redirect('thank_you.html');
+            document.getElementById('submitButton').click();
+            
+          });
+        },
+
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>

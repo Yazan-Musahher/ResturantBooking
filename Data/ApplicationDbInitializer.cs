@@ -41,7 +41,7 @@ public static class ApplicationDbInitializer
         {
             new Restaurant("Restaurant1", "Address1", "Email1", "12345678"),
             new Restaurant("Restaurant2", "Address2", "Email2", "87654321"),
-            new Restaurant("Restaurant3", "Address4", "Email3", "69696969")
+            new Restaurant("Restaurant3", "Address3", "Email3", "69696969")
         };
         
         db.Restaurants.AddRange(restaurants);
