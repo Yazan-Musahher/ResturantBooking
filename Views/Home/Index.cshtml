@@ -2,19 +2,21 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="~/css/Home.css">
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+   
 </div>
 
     @foreach (var restaurant in Model)
     {
         // Example
-        <div style="background-color: gray">
-            <h3>@restaurant.Name</h3>
-            @restaurant.Address<br/>
-            @restaurant.Email<br/>
-            @restaurant.PhoneNumber<br/>
-            <a asp-area="" asp-controller="Booking" asp-action="Index" asp-route-id="@restaurant.RestaurantId">Book</a>
-        </div><br/>
+       <div  class="card" style="width:400px">
+           <div class="card-body">
+           <h4 class="card-title">@restaurant.Name</h4>
+             <p class="card-text"> @restaurant.Address</p>
+             <p class="card-text">  @restaurant.PhoneNumber</p>
+           <a asp-area="" asp-controller="Booking" asp-action="Index" asp-route-id="@restaurant.RestaurantId" class="btn btn-primary">Book</a>
+         </div>
+       </div>
     }
