@@ -20,14 +20,14 @@
 <body>
 <header>
     <header>
-    		<a href="#" class="logo"><i class="ri-home-heart-fill"></i><span>Restaurant Booking</span></a>
+    		<a class="logo" asp-area="" asp-controller="Home" asp-action="Index"><i class="ri-home-heart-fill"></i><span>Restaurant Booking</span></a>
     
 	    <ul class="navbar">
 		    <li><a asp-area="" asp-controller="Home" asp-action="Index">Hjem</a></li>
 		    <li><a href="#">Meny</a></li>
 		    <li><a href="#">Om</a></li>
 		    <li><a href="#">Kontakt</a></li>
-		    <li><a href="#">Bedrifter</a></li>
+		    <li><a asp-area="" asp-controller="Bedrifter" asp-action="Index">Bedrifter</a></li>
 	    </ul>
 	    <div class="main">
 		    <a asp-area="Identity" asp-page="/Account/Register">Sign up</a>

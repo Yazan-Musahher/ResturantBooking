@@ -5,6 +5,7 @@
 @{
     var applicationUser = await UserManager.GetUserAsync(User);
 }
+<link rel="stylesheet" href="~/css/Register.css"/>
 
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User) && applicationUser != null)

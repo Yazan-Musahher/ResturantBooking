@@ -11,12 +11,24 @@
     @foreach (var restaurant in Model)
     {
         // Example
-       <div  class="card" style="width:400px">
-           <div class="card-body">
-           <h4 class="card-title">@restaurant.Name</h4>
-             <p class="card-text"> @restaurant.Address</p>
-             <p class="card-text">  @restaurant.PhoneNumber</p>
-           <a asp-area="" asp-controller="Booking" asp-action="Index" asp-route-id="@restaurant.RestaurantId" class="btn btn-primary">Book</a>
-         </div>
-       </div>
+      <div class="grid">
+        <div class="grid-item">
+          <img src="bilder/res1.jpg"/>
+          <div class="card">
+            <div class="card-content">
+              <h1 class="card-header">@restaurant.Name</h1>
+              <p class="card-text">
+                <strong>Adress:@restaurant.Address </strong>
+              </p>
+              <p class="card-text">
+                <strong>Email:@restaurant.Email </strong>
+              </p>
+              <p class="card-text">
+                <strong>Phone:@restaurant.PhoneNumber </strong>
+              </p>
+              <a asp-area="" asp-controller="Booking" asp-action="Index" asp-route-id="@restaurant.RestaurantId" class="card-btn">Book</a>
+            </div>
+          </div>
+        </div>
+      </div>
     }

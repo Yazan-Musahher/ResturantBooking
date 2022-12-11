@@ -3,12 +3,14 @@
     ViewData["Title"] = "Booking Page";
 }
 
+<link rel="stylesheet" href="~/css/booking.css">
+
 <div class="text-center">
     <h1 class="display-4">@Model.Restaurant.Name</h1>
 </div>
 
 
-<h3>Reserve table</h3>
+<h3>Reserver bord</h3>
 <form method="post">
     <input type="datetime-local" id="time" name="time"/>
     <input type="number" id="seats" name="seats" placeholder="Seats"/>
