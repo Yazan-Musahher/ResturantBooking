@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Resturant_Booking.Data;
 using Resturant_Booking.Models;
+using TwilioTest.Data;
 
 namespace Resturant_Booking.Controllers;
 
@@ -12,6 +13,7 @@ public class BookingController : Controller
 {
     private ApplicationDbContext _db;
     private UserManager<ApplicationUser> _um;
+    private readonly MessageService _messageService;
     
     public BookingController(ApplicationDbContext db, UserManager<ApplicationUser> um)
     {
@@ -91,6 +93,10 @@ public class BookingController : Controller
         // Return to view of user reservations if we make that
         //ViewBag.Message = "Table reserved";
         ViewData["Message"] = "Table reserved";
+        
+        // Sends out a confirmation text message
+        //_messageService.SendMessage();
+        
         return RedirectToAction("Index", new { message = "Table reserved" });
     }
 }
