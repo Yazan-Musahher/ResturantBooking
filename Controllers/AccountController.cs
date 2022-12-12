@@ -27,7 +27,7 @@ namespace Resturant_Booking
         }
         
         [HttpGet]
-        [Route("User")]
+        [Route("Users")]
 
 
         //get all users from our database
@@ -36,6 +36,40 @@ namespace Resturant_Booking
         {
             return Ok(dbContext.Users.ToList());
         }
+        
+        [HttpGet]
+        [Route("Table")]
+
+
+        //get all users from our database
+
+        public IActionResult GetTable()
+        {
+            return Ok(dbContext.Tables.ToList());
+        }
+
+        [HttpGet]
+        [Route("Reservation")]
+
+
+        //get all users from our database
+
+        public IActionResult GetReservation()
+        {
+            return Ok(dbContext.Reservations.ToList());
+        }
+
+        [HttpGet]
+        [Route("Restaurants")]
+
+
+        //get all users from our database
+
+        public IActionResult GetRestauranter()
+        {
+            return Ok(dbContext.Restaurants.ToList());
+        }
+
         
         // Add new users to our database
        
