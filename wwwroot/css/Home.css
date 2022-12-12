@@ -8,12 +8,14 @@
 /*    Home page style for the cards     */
 
 .grid {
-    display: grid;
-    width: 25%;
+   display: inline-flex;
+    width: 27%;
     grid-gap: 25px;
-    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     align-items: start;
-    margin-top: 190px;
+    margin-left: 25px;
+    margin-right: 50px;
+    margin-top: 150px;
 }
 
 
@@ -34,19 +36,18 @@
 .card-img {
     display: block;
     width: 50%;
-    height: 5rem;
-    object-fit: cover;
+    height: 15px;
 }
 
 .card-content {
-    padding: 3rem;
+    padding: 1px;
 }
 
 .card-header {
     font-size: 3rem;
     font-weight: 500;
     color: #0d0d0d;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .card-text {
