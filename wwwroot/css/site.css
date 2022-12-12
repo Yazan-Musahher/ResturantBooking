@@ -29,6 +29,12 @@ header{
   padding: 0px 7%;
   transition: all .50s ease;
 }
+
+header.sticy{
+  padding: 5px 100px;
+  background: #fff;
+  
+}
 .logo{
   display: flex;
   align-items: center;
@@ -137,4 +143,14 @@ header{
   .navbar.open{
     right: 2%;
   }
+}
+
+/* Scroll for the navbar */
+
+.scroll-down header-edit{
+  transform: translate3d(0, -100%, 0);
+}
+
+.scroll-up header-edit {
+  border-bottom: 5px solid red;
 }

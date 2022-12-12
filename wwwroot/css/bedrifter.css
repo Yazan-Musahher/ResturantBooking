@@ -108,7 +108,7 @@ textarea.form-control {
     padding-top: 10px;
     padding-bottom: 10px; }
 
-button {
+submit-edit {
     border: none;
     width: 162px;
     height: 51px;
@@ -131,7 +131,7 @@ button {
     transition-property: color;
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s; }
-button i {
+submit-edit i {
     margin-left: 10px;
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
