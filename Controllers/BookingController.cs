@@ -13,7 +13,7 @@ public class BookingController : Controller
 {
     private ApplicationDbContext _db;
     private UserManager<ApplicationUser> _um;
-    private readonly MessageService _messageService;
+    private readonly MessageService _messageService = new MessageService();
     
     public BookingController(ApplicationDbContext db, UserManager<ApplicationUser> um)
     {
@@ -58,6 +58,9 @@ public class BookingController : Controller
             .Where(i => i.Seats >= seats)               // Only tables with enough seats
             .OrderBy(i => i.Seats);                     // Ordered from closest to least close in seats
         
+            
+        var restaurant = _db.Restaurants.Find(restaurantId);
+
         // Find first available 
         foreach (var table in tables)
         {
@@ -95,7 +98,8 @@ public class BookingController : Controller
         ViewData["Message"] = "Table reserved";
         
         // Sends out a confirmation text message
-        //_messageService.SendMessage();
+        if (restaurant != null)
+            _messageService.SendMessage(restaurant, reservation);
         
         return RedirectToAction("Index", new { message = "Table reserved" });
     }
