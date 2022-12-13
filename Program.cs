@@ -27,6 +27,10 @@ using (var services = app.Services.CreateScope())
     ApplicationDbInitializer.Initialize(db, um, rm);
 }
 
+// Adding Authentication
+
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

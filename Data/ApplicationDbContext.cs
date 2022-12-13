@@ -10,6 +10,11 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         : base(options)
     {
     }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+    }
     
     public DbSet<Restaurant> Restaurants => Set<Restaurant>();
     public DbSet<Table> Tables => Set<Table>();

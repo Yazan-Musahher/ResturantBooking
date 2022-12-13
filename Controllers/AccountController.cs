@@ -41,7 +41,7 @@ namespace Resturant_Booking
         [Route("Table")]
 
 
-        //get all users from our database
+        //get all Table from our database
 
         public IActionResult GetTable()
         {
@@ -52,7 +52,7 @@ namespace Resturant_Booking
         [Route("Reservation")]
 
 
-        //get all users from our database
+        //get all Reservations from our database
 
         public IActionResult GetReservation()
         {
@@ -63,15 +63,13 @@ namespace Resturant_Booking
         [Route("Restaurants")]
 
 
-        //get all users from our database
+        //get all Restaurants from our database
 
         public IActionResult GetRestauranter()
         {
             return Ok(dbContext.Restaurants.ToList());
         }
-
         
-        // Add new users to our database
        
         
         
