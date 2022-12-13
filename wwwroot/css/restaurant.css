@@ -1,0 +1,14 @@
+﻿a{
+    color: white;
+}
+
+.reservation{
+    background-color: #fff;
+    border-radius: 0.4rem;
+    overflow: hidden;
+    box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 10px;
+    margin: 10px;
+}
