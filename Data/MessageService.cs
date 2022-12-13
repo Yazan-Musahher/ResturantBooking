@@ -30,8 +30,8 @@ public class MessageService
         Console.WriteLine(message.Sid);
     }
     
-    private string accountSid = "ACae555bdac3267303504489e9accf25b9";
-    private string authToken = "3c07bfc67f561ee7da5d70ede89fa3ae";
+    private string accountSid = "Insert SSID";
+    private string authToken = "Insert AuthToken";
     private string phoneNumberFrom = "+12674632427";
     private string phoneNumberTo = "+4747752193";
 }
