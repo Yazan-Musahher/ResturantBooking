@@ -40,10 +40,11 @@
 		    
 		       @if (SignInManager.IsSignedIn(User) && applicationUser != null)
 		       {
-			       if (applicationUser.RestaurantId != null)
+			       var restaurantId = applicationUser.RestaurantId;
+			       if (restaurantId != null)
 			       {
 				       <li>
-					       <a asp-area="@applicationUser.RestaurantId" asp-controller="Restaurant" asp-action="Index">Your restaurant</a>
+					       <a asp-area="" asp-controller="Restaurant" asp-action="Index" asp-route-id="@restaurantId">Your restaurant</a>
 				       </li>   
 			       }
 			       
