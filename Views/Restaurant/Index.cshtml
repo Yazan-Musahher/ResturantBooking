@@ -6,9 +6,11 @@
 
 <link rel="stylesheet" href="~/css/restaurant.css">
 
+<br/><br/><br/><br/>
+
 <h2>@Model.Restaurant.Name</h2>
 
-<a class="nav-link text-dark" asp-area="" asp-controller="Restaurant" asp-action="Edit" style="color: white">Edit restaurant</a>
+<a class="nav-link" asp-area="" asp-controller="Restaurant" asp-action="Edit" style="color: white">Edit restaurant</a>
 
 <h3>Reservations</h3>
 @foreach (var reservation in Model.Reservations)
@@ -17,10 +19,9 @@
     {
         // Example
         <div class="reservation" style="background-color: gray">
-            Reservation id @reservation.ReservationId,<br/>
-            Table @reservation.Table.Seats,<br/>
-            Name @reservation.User?.Name,<br/>
-            Time @reservation.Time.ToString(" HH:mm dd.MM.yyyy")
+            Reserved for: @reservation.User?.Name,<br/>
+            Seats: @reservation.Table.Seats<br/>
+            Reservation time: @reservation.Time.ToString(" HH:mm dd.MM.yyyy")
         </div>
         <br/>
     }

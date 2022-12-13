@@ -4,13 +4,19 @@
     Layout = "_Layout";
 }
 
+<br/><br/><br/><br/>
+
 <h2>Edit @Model.Restaurant.Name</h2>
+
+<br/>
 
 <h3>Add user to restaurant</h3>
 <form method="post">
     <input type="email" id="email" name="email" placeholder="User email"/>
     <input type="submit"/>
 </form>
+
+<br/>
 
 <div>
     <h4>Users</h4>
@@ -22,6 +28,8 @@
         <input type="submit" value="Leave restaurant"/>
     </form>
 </div>
+
+<br/>
 
 @if (Model != null)
 {
@@ -35,8 +43,9 @@
         <input type="submit"/>
     </form>
     
+    <br/>
+    
     <h3>Edit tables</h3>
-
 
     <form method="post" asp-action="UpdateTables">
         <input type="hidden" id="id" name="id" value="@Model.Restaurant.RestaurantId"/>
