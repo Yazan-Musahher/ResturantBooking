@@ -2,19 +2,38 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true"/>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
 </div>
 
-    @foreach (var restaurant in Model)
-    {
-        // Example
-        <div style="background-color: gray">
-            <h3>@restaurant.Name</h3>
-            @restaurant.Address<br/>
-            @restaurant.Email<br/>
-            @restaurant.PhoneNumber<br/>
-            <a asp-area="" asp-controller="Booking" asp-action="Index" asp-route-id="@restaurant.RestaurantId">Book</a>
-        </div><br/>
-    }
+   <style>
+       div.container {
+          width: 100%;
+              min-height: 100vh;
+              padding: 5%;
+              background-image: linear-gradient(rgba(0,8,51,0.9), rgba(0,8,51,0.9)), url("images/food.jpg");
+              background-position: center;
+              background-size: cover;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+       }
+   </style>
+<body>
+   <div class="Header">
+       <h1>Restaurant booker</h1>
+   </div>
+   <div class="container">
+       <div class="search-bar">
+           <form asp-controller="SearchResult" asp-action="Index" method="get">
+               <input type="text" placeholder="Search for city" name="SearchCity">
+               <input type="submit"/>
+           </form>
+       </div>
+   </div>
+   <div class="quote">
+       <h1>The best restaurantes in nearby</h1>
+   </div>
+   </body>

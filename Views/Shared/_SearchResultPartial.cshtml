@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Restaurant>
+
+@{
+    ViewBag.Title = "title";
+}
+
+@foreach (var restaurant in Model)
+{
+    <h1>@restaurant.Name</h1>
+    <h2>@restaurant.Address</h2>
+    <h3>@restaurant.PhoneNumber</h3>
+}
+

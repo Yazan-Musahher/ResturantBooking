@@ -27,4 +27,8 @@
         <PackageReference Include="Npgsql" Version="6.0.7" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Remove="Views\Shared\_RestaurantPartial.cshtml" />
+    </ItemGroup>
+
 </Project>
