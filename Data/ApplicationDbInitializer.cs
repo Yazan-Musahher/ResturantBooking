@@ -39,9 +39,9 @@ public static class ApplicationDbInitializer
         // Add example restaurant
         var restaurants = new[]
         {
-            new Restaurant("Restaurant1", "Address1", "Email1", "12345678"),
-            new Restaurant("Restaurant2", "Address2", "Email2", "87654321"),
-            new Restaurant("Restaurant3", "Address3", "Email3", "69696969")
+            new Restaurant("Restaurant1", "Address1", "Grimstad","Email1", "12345678"),
+            new Restaurant("Restaurant2", "Address2", "Grimstad", "Email2","87654321"),
+            new Restaurant("Restaurant3", "Address3", "Kristaiansand","Email3", "69696969")
         };
         
         db.Restaurants.AddRange(restaurants);

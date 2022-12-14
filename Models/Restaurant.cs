@@ -6,10 +6,11 @@ public class Restaurant
 {
     public Restaurant() {}
 
-    public Restaurant(string name, string address, string email, string phoneNumber)
+    public Restaurant(string name, string address, string city,string email, string phoneNumber)
     {
         Name = name;
         Address = address;
+        City = city;
         Email = email;
         PhoneNumber = phoneNumber;
     }
@@ -24,6 +25,10 @@ public class Restaurant
     [Required]
     [StringLength(200)]
     public string Address { get; set; } = String.Empty;
+    
+    [Required]
+    [StringLength(200)]
+    public string City { get; set; } = String.Empty;
     
     [Required]
     [StringLength(200)]

@@ -169,8 +169,12 @@ public class RestaurantController : Controller
         var restaurant = _db.Restaurants.Find(id);
         if (restaurant == null)
         {
+            
             return RedirectToAction("Index", "Home");
         }
+        
+        
+        
         
         int[] newTableNr = {s_1, s_2, s_3, s_4, s_5, s_6, s_7, s_8, s_9, s_10, s_11, s_12};
         var tables = _db.Tables.Where(i => i.RestaurantId == id);
@@ -206,6 +210,7 @@ public class RestaurantController : Controller
             }
         }
         
+        
         _db.SaveChanges();
         
         return RedirectToAction("Edit", restaurant);
@@ -213,3 +218,4 @@ public class RestaurantController : Controller
     
 
 }
+

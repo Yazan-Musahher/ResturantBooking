@@ -18,6 +18,15 @@ public class BookingController : Controller
         _db = db;
         _um = um;
     }
+    /*public IActionResult searchforcity(string city)
+    {
+        if (expr)
+        {
+            
+        }
+        var resturants = _db.Resturants.Where(r => r.City == city).ToList();
+        return View(Index);
+    }*/
     
     [Authorize]
     public IActionResult Index(string message = "")
