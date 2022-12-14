@@ -1,0 +1,32 @@
+Christoffer Langstrøm Knudsen (1):
+      Test Push
+
+Jacob Bertin Stoveland (2):
+      added necessary files
+      added more essential files such as booking view
+
+Mohamad Yazan Musahher (4):
+      Initial commit
+      test commit
+      test commit2
+      satt opp alle package
+
+aleksandsk (11):
+      dbAndModels test
+      Added username in register and dbInitializer
+      Fixed a bunch of missing code
+      Added dish class to db
+      Added admin view, booking view and restaurant view an added basic functionality to admin, home and restaurant
+      Made it so that only people who have access to a restaurant, or admins can see their restaurantpage
+      Added ability for restaurant members to add more members to their restaurant
+      Added main page with list of restaurants
+      Added ability to edit restaurant details and leave restaurant
+      Added ability to edit number of tables
+      Added basic unsafe paypal payment
+
+kriger452 (1):
+      Delete ResturantBooking directory
+
+Бйøрнар Мархнес (1):
+      Merge pull request #1 from Yazan-Musahher/adminView
+

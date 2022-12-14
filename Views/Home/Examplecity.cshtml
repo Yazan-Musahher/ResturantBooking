@@ -1,0 +1,37 @@
+﻿@model Restaurant
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<style>
+div.container {
+width: 100%;
+min-height: 100vh;
+padding: 5%;
+background-image: linear-gradient(rgba(0,8,51,0.9), rgba(0,8,51,0.9)), url("images/food.jpg");
+background-position: center;
+background-size: cover;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+</style>
+
+<div class="Header">
+    <h1>Restaurant booker</h1>
+</div>
+<div class="container">
+    <div class="search-bar">
+        <from action="" method="get">
+            @foreach(var item in Restaurant)
+            {
+                if (city = _db.Restaurant.Where(x => x.City == city).ToList())
+                {
+                    Retun View(Index) 
+                }
+            }
+        </from>
+    </div>
+</div>
