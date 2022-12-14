@@ -1,4 +1,4 @@
-﻿@model Restaurant
+﻿@model IEnumerable<Restaurant>
 
 @{
     Layout = null;
@@ -22,16 +22,14 @@ justify-content: center;
 <div class="Header">
     <h1>Restaurant booker</h1>
 </div>
-<div class="container">
-    <div class="search-bar">
-        <from action="" method="get">
-            @foreach(var item in Restaurant)
-            {
-                if (city = _db.Restaurant.Where(x => x.City == city).ToList())
-                {
-                    Retun View(Index) 
-                }
-            }
-        </from>
-    </div>
-</div>
+ @foreach (var restaurant in Model)
+    {
+        // Example
+        <div class="container">
+            <h3>@restaurant.Name</h3>
+            @restaurant.Address<br/>
+            @restaurant.Email<br/>
+            @restaurant.PhoneNumber<br/>
+            <a asp-area="" asp-controller="Booking" asp-action="Index" asp-route-id="@restaurant.RestaurantId">Book</a>
+        </div><br/>
+    }
