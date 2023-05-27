@@ -34,12 +34,20 @@
 		     {
 			     <li class="nav-item">
 				     <a asp-area="" asp-controller="Admin" asp-action="Index">Admin </a>
-				     </li>	
+			     </li>	
 		     }
 		   
 		    
 		       @if (SignInManager.IsSignedIn(User) && applicationUser != null)
 		       {
+			       var restaurantId = applicationUser.RestaurantId;
+			       if (restaurantId != null)
+			       {
+				       <li>
+					       <a asp-area="" asp-controller="Restaurant" asp-action="Index" asp-route-id="@restaurantId">Your restaurant</a>
+				       </li>   
+			       }
+			       
 			       <li class="nav-item">
 				       <a class="nav-link text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @applicationUser.Name!</a>
 			       </li>
@@ -56,9 +64,6 @@
 			       <a asp-area="Identity" asp-page="/Account/Login">log in</a>
 			       <a href="#">Book Table</a>
 		       }
-		     
-		     
-		     
 	    </div>
 
 

@@ -5,3 +5,11 @@
 .edit-postion{
     margin-top: 90px;
 }
+
+main{
+    text-align: center;
+}
+
+#smart-button-container{
+    margin: 10vh;
+}

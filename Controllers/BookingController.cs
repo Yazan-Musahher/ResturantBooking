@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Resturant_Booking.Data;
 using Resturant_Booking.Models;
+using TwilioTest.Data;
 
 namespace Resturant_Booking.Controllers;
 
@@ -12,6 +13,7 @@ public class BookingController : Controller
 {
     private ApplicationDbContext _db;
     private UserManager<ApplicationUser> _um;
+    private readonly MessageService _messageService = new MessageService();
     
     public BookingController(ApplicationDbContext db, UserManager<ApplicationUser> um)
     {
@@ -56,6 +58,9 @@ public class BookingController : Controller
             .Where(i => i.Seats >= seats)               // Only tables with enough seats
             .OrderBy(i => i.Seats);                     // Ordered from closest to least close in seats
         
+            
+        var restaurant = _db.Restaurants.Find(restaurantId);
+
         // Find first available 
         foreach (var table in tables)
         {
@@ -91,6 +96,15 @@ public class BookingController : Controller
         // Return to view of user reservations if we make that
         //ViewBag.Message = "Table reserved";
         ViewData["Message"] = "Table reserved";
+        
+        // Sends out a confirmation text message
+        if (restaurant != null)
+        {
+            Console.WriteLine("Message sent");
+            _messageService.SendMessage(restaurant, reservation);
+        }
+            
+        
         return RedirectToAction("Index", new { message = "Table reserved" });
     }
 }

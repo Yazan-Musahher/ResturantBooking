@@ -11,9 +11,62 @@
 
 
 <h3>Reserver bord</h3>
+<br/>
 <form method="post">
-    <input type="datetime-local" id="time" name="time"/>
-    <input type="number" id="seats" name="seats" placeholder="Seats"/>
-    <input type="hidden" id="restaurantId" name="restaurantId" value="@Model.Restaurant.RestaurantId"/>
-    <input type="submit"/>
+  <input type="datetime-local" id="time" name="time"/>
+  <input type="number" id="seats" name="seats" placeholder="Seats"/>
+  <input type="hidden" id="restaurantId" name="restaurantId" value="@Model.Restaurant.RestaurantId"/>
+  <input type="submit" style="display: none" id="submitButton"/>
+
+  <div id="smart-button-container">
+    <div style="text-align: center;">
+      <div id="paypal-button-container"></div>
+    </div>
+  </div>
+    
 </form>
+<script src="https://www.paypal.com/sdk/js?client-id=AZMgx9Z8gTDdtJKCfABmWugCOwiMz2Ra4nt-Xs8ibX9w_KAPbABpTLEr6cPXzzi-F_n4SAaXIAbBP1t3&enable-funding=venmo&currency=NOK"
+        data-sdk-integration-source="button-factory"></script>
+<script>
+
+//AZKwx3XFU9M4uxecdaTMjNL1LFQW54P1-XygoS4f2pJbVbi8Regv0lZYig84Xih_IcvYtSnWZhFmt1Wa
+//AZMgx9Z8gTDdtJKCfABmWugCOwiMz2Ra4nt-Xs8ibX9w_KAPbABpTLEr6cPXzzi-F_n4SAaXIAbBP1t3
+//4005519200000004
+
+    function initPayPalButton() {
+      paypal.Buttons({
+        style: {
+          shape: 'rect',
+          color: 'gold',
+          layout: 'vertical',
+          label: 'paypal',
+        },
+
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{"amount":{"currency_code":"NOK","value":20}}]
+          });
+        },
+
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(orderData) {
+            
+            // Full available details
+            console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+            // Show a success message within this page, e.g.
+            const element = document.getElementById('paypal-button-container');
+
+            // Reserve table
+            document.getElementById('submitButton').click();
+            
+          });
+        },
+
+        onError: function(err) {
+          console.log(err);
+        }
+      }).render('#paypal-button-container');
+    }
+    initPayPalButton();
+  </script>
